@@ -14,9 +14,15 @@ The file must start with Jekyll front matter:
 
 ```yaml
 ---
-title: ICAI Daily Intelligence Report
+title: "Coding Agent Landscape Assessment, <Month Day, Year>"
 date: YYYY-MM-DD
-analyst: <model name>
+analyst: ICAI
+highlights:
+  - First key finding (one line, no markdown)
+  - Second key finding
+  - Third key finding
+  - Fourth key finding (3-5 highlights total)
+assessment: "Accelerating" or "Stable" or "Decelerating" — with a short qualifier
 ---
 ```
 
@@ -24,7 +30,7 @@ Followed by a tight 1-page executive briefing:
 
 - One headline per theater (the single most important development)
 - Key details and sources for each theater
-- Overall assessment: is the field accelerating, stable, or stagnating?
+- Overall assessment section expanding on the front matter assessment
 
 ## Finally
 

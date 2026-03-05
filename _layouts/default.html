@@ -164,10 +164,37 @@
       color: var(--navy);
       margin-top: 0.25rem;
     }
-    .report-card .report-analyst {
-      font-size: 0.8rem;
+    .report-card .report-assessment {
+      background: var(--navy);
+      color: #fff;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .report-highlights {
+      margin: 0.5rem 0 0 1.25rem;
+      padding: 0;
+      list-style: none;
+    }
+    .report-highlights li {
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 0.3rem;
+      line-height: 1.5;
+      margin-bottom: 0.25rem;
+      padding-left: 0.9rem;
+      position: relative;
+    }
+    .report-highlights li::before {
+      content: "\25AA";
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+      font-size: 0.65rem;
+      top: 0.2rem;
     }
 
     /* — Report page — */

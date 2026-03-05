@@ -14,10 +14,16 @@ title: Home
   {% for report in sorted %}
   <div class="report-card">
     <a href="{{ report.url | relative_url }}">
-      <div class="report-date">{{ report.date | date: "%B %-d, %Y" }}</div>
+      <div class="report-date">{{ report.date | date: "%B %-d, %Y" }}{% if report.assessment %} <span class="report-assessment">{{ report.assessment }}</span>{% endif %}</div>
       <div class="report-title">{{ report.title }}</div>
-      {% if report.analyst %}<div class="report-analyst">Analyst: {{ report.analyst }}</div>{% endif %}
     </a>
+    {% if report.highlights %}
+    <ul class="report-highlights">
+      {% for item in report.highlights %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </div>
   {% endfor %}
 </main>

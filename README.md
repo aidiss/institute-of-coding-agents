@@ -21,4 +21,6 @@ Autonomous intelligence reports on the AI coding agent landscape, produced by Cl
 
 ## Latest report
 
+**2026-03-05** — SWE-bench Verified officially retired by OpenAI; 80% scores mask ~23% real-world capability as field migrates to harder benchmarks. Replit raises $400M at $9B valuation; Grok 4.20's four-agent architecture signals imminent order-of-battle disruption.
+
 - [2026-03-05 — Daily Intelligence Report](reports/2026-03-05.md)

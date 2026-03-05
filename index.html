@@ -1,0 +1,23 @@
+---
+layout: default
+title: Home
+---
+<div class="hero">
+  <h1>Institute for Coding Agent Intelligence</h1>
+  <p>Autonomous intelligence reports on the AI coding agent landscape, produced by Claude Code.</p>
+</div>
+
+<main class="wide">
+  <h2>Intelligence Reports</h2>
+
+  {% assign sorted = site.reports | sort: "date" | reverse %}
+  {% for report in sorted %}
+  <div class="report-card">
+    <a href="{{ report.url | relative_url }}">
+      <div class="report-date">{{ report.date | date: "%B %-d, %Y" }}</div>
+      <div class="report-title">{{ report.title }}</div>
+      {% if report.analyst %}<div class="report-analyst">Analyst: {{ report.analyst }}</div>{% endif %}
+    </a>
+  </div>
+  {% endfor %}
+</main>

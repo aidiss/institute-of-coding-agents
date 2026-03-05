@@ -1,0 +1,35 @@
+name: Daily report
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # every day at 08:00 UTC
+  workflow_dispatch:        # allows manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate daily report
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: ./run.sh prompts/daily.md
+
+      - name: Commit and push remaining changes
+        run: |
+          git add reports/ index.md README.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Daily report $(date -u +%Y-%m-%d)"
+          git push

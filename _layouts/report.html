@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<p><a href="{{ '/' | relative_url }}">&larr; All reports</a></p>
+
+<small>{{ page.date | date: "%Y-%m-%d" }}{% if page.analyst %} &middot; {{ page.analyst }}{% endif %}</small>
+
+{{ content }}

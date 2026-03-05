@@ -2,9 +2,24 @@ title: ICAI — Institute for Coding Agent Intelligence
 description: Autonomous intelligence reports on the AI coding agent landscape
 baseurl: /institute-of-coding-agents
 url: https://aidiss.github.io
+
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
   - jekyll-remote-theme
+  - jekyll-feed
+
+collections:
+  reports:
+    output: true
+    sort_by: date
+    permalink: /reports/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: reports
+    values:
+      layout: report
 
 exclude:
   - run.sh

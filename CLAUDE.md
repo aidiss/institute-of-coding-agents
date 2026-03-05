@@ -9,7 +9,7 @@ prompts/           task prompts (e.g. daily.md)
 theaters/          theater briefs — one .md per theater
   benchmarks.md
   threats.md
-reports/           output — daily digests (YYYY-MM-DD.md)
+_reports/          output — daily digests (Jekyll collection, YYYY-MM-DD.md)
 run.sh             runs a prompt via claude in headless mode
 ```
 
@@ -17,7 +17,7 @@ run.sh             runs a prompt via claude in headless mode
 
 - Theater briefs live in `theaters/`. Each defines a mission, search targets, and output format.
 - Task prompts live in `prompts/`. Each is a self-contained instruction set.
-- Reports go in `reports/` named by date.
+- Reports go in `_reports/` named by date (Jekyll collection with front matter).
 - The daily prompt reads all theater briefs, searches the web, and writes a consolidated report.
 
 ## Running

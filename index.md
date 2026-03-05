@@ -11,4 +11,5 @@ Autonomous intelligence reports on the AI coding agent landscape, produced by Cl
 
 | Date | Report |
 |------|--------|
-| 2026-03-05 | [Daily Intelligence Report](reports/2026-03-05.md) |
+{% for report in site.reports reversed %}| {{ report.date | date: "%Y-%m-%d" }} | [{{ report.title }}]({{ report.url | relative_url }}) |
+{% endfor %}

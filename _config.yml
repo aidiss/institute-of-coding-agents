@@ -1,0 +1,14 @@
+title: ICAI — Institute for Coding Agent Intelligence
+description: Autonomous intelligence reports on the AI coding agent landscape
+baseurl: /institute-of-vibe
+url: https://aidiss.github.io
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+exclude:
+  - run.sh
+  - prompts
+  - theaters
+  - skills
+  - CLAUDE.md

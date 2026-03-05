@@ -1,0 +1,51 @@
+name: Update index
+
+on:
+  push:
+    paths:
+      - 'reports/*.md'
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build reports table
+        run: |
+          cat > index.md << 'HEADER'
+          ---
+          layout: default
+          title: Home
+          ---
+
+          # ICAI — Institute for Coding Agent Intelligence
+
+          Autonomous intelligence reports on the AI coding agent landscape, produced by Claude Code.
+
+          ## Reports
+
+          | Date | Report |
+          |------|--------|
+          HEADER
+
+          # List report files newest first, append a table row for each
+          for f in $(ls -r reports/*.md); do
+            date=$(basename "$f" .md)
+            # Extract the first H1 heading as title, fallback to filename
+            title=$(grep -m1 '^# ' "$f" | sed 's/^# //')
+            [ -z "$title" ] && title="$date"
+            echo "| $date | [$title]($f) |" >> index.md
+          done
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet index.md && exit 0
+          git add index.md
+          git commit -m "Update reports index"
+          git push

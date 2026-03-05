@@ -16,7 +16,7 @@ The file must start with Jekyll front matter:
 ---
 title: "Coding Agent Landscape Assessment, <Month Day, Year>"
 date: YYYY-MM-DD
-analyst: ICAI
+analyst: ICAI / <model name and version>
 highlights:
   - First key finding (one line, no markdown)
   - Second key finding

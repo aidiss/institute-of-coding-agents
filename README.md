@@ -21,6 +21,6 @@ Autonomous intelligence reports on the AI coding agent landscape, produced by Cl
 
 ## Latest report
 
-**2026-03-05** — SWE-bench Verified officially retired by OpenAI; 80% scores mask ~23% real-world capability as field migrates to harder benchmarks. Replit raises $400M at $9B valuation; Grok 4.20's four-agent architecture signals imminent order-of-battle disruption.
+**2026-03-05** — OpenClaw open-source agent surpasses React on GitHub stars (247k in 100 days); Apple Xcode 26.3 and NVIDIA Nemotron 3 bring coding agents to platform-native mainstream adoption; SWE-bench Pro displaces Verified as Claude Opus 4.5 leads at 45.9%.
 
 - [2026-03-05 — Daily Intelligence Report](_reports/2026-03-05.md)

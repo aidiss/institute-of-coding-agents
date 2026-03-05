@@ -23,6 +23,8 @@ highlights:
   - Third key finding
   - Fourth key finding (3-5 highlights total)
 assessment: "Accelerating" or "Stable" or "Decelerating" — with a short qualifier
+prompt_hash: <provided in metadata>
+prompt_url: <provided in metadata>
 ---
 ```
 

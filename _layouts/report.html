@@ -10,6 +10,7 @@ layout: default
     <span class="badge">Daily Brief</span>
     <span>{{ page.date | date: "%B %-d, %Y" }}</span>
     {% if page.analyst %}<span>Analyst: {{ page.analyst }}</span>{% endif %}
+    {% if page.prompt_url %}<span><a href="{{ page.prompt_url }}">Prompt {{ page.prompt_hash | truncate: 11, "" }}</a></span>{% endif %}
   </div>
 
   {{ content }}

@@ -2,8 +2,12 @@ name: Daily report
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # every day at 08:00 UTC
-  workflow_dispatch:        # allows manual trigger from GitHub UI
+    - cron: '3 4 * * *'  # 04:03 UTC = 07:03 Vilnius (EET/EEST)
+  workflow_dispatch:
+    inputs:
+      theater:
+        description: 'Theater to run (blank = all)'
+        required: false
 
 permissions:
   contents: write
@@ -11,6 +15,14 @@ permissions:
 jobs:
   report:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        theater: [releases, benchmarks, security, funding]
+    if: >-
+      github.event_name == 'schedule' ||
+      !github.event.inputs.theater ||
+      github.event.inputs.theater == ''
     steps:
       - uses: actions/checkout@v4
 
@@ -22,14 +34,28 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Generate daily report
+      - name: Generate report
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: ./run.sh prompts/daily.md
+        run: ./run.sh theaters/${{ matrix.theater }}.md
 
-      - name: Commit and push remaining changes
+  single:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.theater != ''
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Configure git
         run: |
-          git add _reports/ README.md
-          git diff --cached --quiet && exit 0
-          git commit -m "Daily report $(date -u +%Y-%m-%d)"
-          git push
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate report
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: ./run.sh theaters/${{ github.event.inputs.theater }}.md

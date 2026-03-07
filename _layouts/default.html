@@ -218,6 +218,41 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
+    .theater-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .filter-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--navy); }
+    .filter-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    .report-card .report-theater {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-left: 0.5rem;
+    }
+
     .back-link {
       display: inline-block;
       font-size: 0.85rem;

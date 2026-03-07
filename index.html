@@ -10,11 +10,19 @@ title: Home
 <main class="wide">
   <h2>Intelligence Reports</h2>
 
+  <div class="theater-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    {% assign theaters = site.reports | map: "theater" | compact | uniq | sort %}
+    {% for t in theaters %}
+    <button class="filter-btn" data-filter="{{ t }}">{{ t | capitalize }}</button>
+    {% endfor %}
+  </div>
+
   {% assign sorted = site.reports | sort: "date" | reverse %}
   {% for report in sorted %}
-  <div class="report-card">
+  <div class="report-card" data-theater="{{ report.theater | default: 'daily' }}">
     <a href="{{ report.url | relative_url }}">
-      <div class="report-date">{{ report.date | date: "%B %-d, %Y" }}{% if report.assessment %} <span class="report-assessment">{{ report.assessment }}</span>{% endif %}</div>
+      <div class="report-date">{{ report.date | date: "%B %-d, %Y" }}{% if report.theater %} <span class="report-theater">{{ report.theater }}</span>{% endif %}{% if report.assessment %} <span class="report-assessment">{{ report.assessment }}</span>{% endif %}</div>
       <div class="report-title">{{ report.title }}</div>
     </a>
     {% if report.highlights %}
@@ -27,3 +35,16 @@ title: Home
   </div>
   {% endfor %}
 </main>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.report-card').forEach(card => {
+      card.style.display = (f === 'all' || card.dataset.theater === f) ? '' : 'none';
+    });
+  });
+});
+</script>

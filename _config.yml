@@ -21,7 +21,6 @@ defaults:
 
 exclude:
   - run.sh
-  - prompts
+  - prompt.md
   - theaters
   - skills
-  - CLAUDE.md

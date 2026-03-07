@@ -5,22 +5,31 @@ Autonomous intelligence reports on the AI coding agent landscape, produced by Cl
 ## Quick start
 
 ```bash
-# Interactive (inside claude code)
-# Just read prompts/daily.md and follow it
+# Run a single theater
+./run.sh theaters/benchmarks.md
 
-# Headless
-./run.sh prompts/daily.md
+# Run all theaters
+for t in theaters/*.md; do ./run.sh "$t"; done
 ```
 
 ## Structure
 
-- `theaters/` — analyst briefs defining what to monitor per topic
-- `prompts/` — task prompts (daily report, etc.)
-- `_reports/` — generated daily digests (Jekyll collection)
-- `run.sh` — headless runner
+- `prompt.md` — shared report template (role, front matter, instructions)
+- `theaters/` — theater briefs (releases, benchmarks, security, funding)
+- `_reports/` — generated reports (Jekyll collection, `YYYY-MM-DD-theater.md`)
+- `run.sh` — headless runner: stitches prompt + theater, runs claude, commits
+
+## Theaters
+
+| Theater | Question |
+|---|---|
+| releases | What shipped? Models, products, open source |
+| benchmarks | Who's winning? Scores, leaderboards, methodology |
+| security | What broke? Vulns, supply chain, exploits |
+| funding | Where's the money? Deals, acquisitions, talent |
 
 ## Latest report
 
-**2026-03-05** — OpenClaw open-source agent surpasses React on GitHub stars (247k in 100 days); Apple Xcode 26.3 and NVIDIA Nemotron 3 bring coding agents to platform-native mainstream adoption; SWE-bench Pro displaces Verified as Claude Opus 4.5 leads at 45.9%.
+**2026-03-05** — OpenClaw open-source agent surpasses React on GitHub stars (247k in 100 days); SWE-bench Pro displaces Verified as Claude Opus 4.5 leads at 45.9%.
 
 - [2026-03-05 — Daily Intelligence Report](_reports/2026-03-05.md)

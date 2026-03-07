@@ -41,8 +41,7 @@ echo "Theater: $THEATER"
 echo "Prompt hash: $PROMPT_HASH"
 echo "---"
 
-claude --system-prompt "Follow the user prompt exactly." \
-       --allowedTools "Agent,Bash,Read,Write,WebSearch,Glob,Grep" \
+claude --settings "$SCRIPT_DIR/settings.json" \
        -p "$FULL_PROMPT"
 
 # Commit and push the report

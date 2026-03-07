@@ -22,5 +22,6 @@ defaults:
 exclude:
   - run.sh
   - prompt.md
+  - settings.json
   - theaters
   - skills

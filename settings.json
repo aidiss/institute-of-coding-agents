@@ -1,0 +1,4 @@
+{
+  "systemPrompt": "Follow the user prompt exactly.",
+  "allowedTools": ["Agent", "Bash", "Read", "Write", "WebSearch", "Glob", "Grep"]
+}

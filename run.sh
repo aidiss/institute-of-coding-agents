@@ -33,6 +33,7 @@ echo "Prompt hash: $PROMPT_HASH"
 echo "---"
 
 claude --settings /tmp/icai-settings.json \
+       --dangerously-skip-permissions \
        -p "Today: ${DATE}. Write report to _reports/${DATE}-${THEATER}.md
 
 ## Theater Brief
@@ -45,5 +46,6 @@ prompt_url: ${REPO_URL}"
 # Commit and push the report
 git pull --rebase
 git add -A
+git diff --cached --quiet && { echo "No changes to commit"; exit 0; }
 git commit -m "${THEATER} — ${DATE}"
 git push

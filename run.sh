@@ -14,35 +14,33 @@ THEATER=$(basename "$THEATER_FILE" .md)
 DATE=$(date +%Y-%m-%d)
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
-# Compute prompt hashes
+# Compute prompt hash (system prompt + theater brief)
 PROMPT_HASH=$(cat "$SCRIPT_DIR/prompt.md" "$THEATER_FILE" | git hash-object --stdin)
 REPO_URL=$(git remote get-url origin 2>/dev/null | sed 's/\.git$//' | sed 's|git@github.com:|https://github.com/|')
 
-PROMPT=$(cat "$SCRIPT_DIR/prompt.md")
+# Build settings with system prompt from prompt.md
+SYSTEM_PROMPT=$(cat "$SCRIPT_DIR/prompt.md")
+jq -n --arg sp "$SYSTEM_PROMPT" '{
+  systemPrompt: $sp,
+  allowedTools: ["Agent","Bash","Read","Write","WebSearch","Glob","Grep"]
+}' > /tmp/icai-settings.json
+
 THEATER_BRIEF=$(cat "$THEATER_FILE")
-
-# Inject date and theater name
-PROMPT="${PROMPT//THEATER/$THEATER}"
-PROMPT="${PROMPT//DATE/$DATE}"
-
-FULL_PROMPT="${PROMPT}
-
----
-## Theater Brief
-${THEATER_BRIEF}
-
----
-## Metadata (include in front matter)
-prompt_hash: ${PROMPT_HASH}
-prompt_url: ${REPO_URL}"
 
 echo "ICAI — $(date -u +%Y-%m-%dT%H:%MZ)"
 echo "Theater: $THEATER"
 echo "Prompt hash: $PROMPT_HASH"
 echo "---"
 
-claude --settings "$SCRIPT_DIR/settings.json" \
-       -p "$FULL_PROMPT"
+claude --settings /tmp/icai-settings.json \
+       -p "Today: ${DATE}. Write report to _reports/${DATE}-${THEATER}.md
+
+## Theater Brief
+${THEATER_BRIEF}
+
+## Metadata (include in front matter)
+prompt_hash: ${PROMPT_HASH}
+prompt_url: ${REPO_URL}"
 
 # Commit and push the report
 git pull --rebase

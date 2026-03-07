@@ -41,7 +41,7 @@ echo "Theater: $THEATER"
 echo "Prompt hash: $PROMPT_HASH"
 echo "---"
 
-claude --system-prompt " " \
+claude --system-prompt "Follow the user prompt exactly." \
        --allowedTools "Agent,Bash,Read,Write,WebSearch,Glob,Grep" \
        -p "$FULL_PROMPT"
 

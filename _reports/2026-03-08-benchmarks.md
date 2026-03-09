@@ -1,6 +1,9 @@
 ---
+title: "Benchmarks, March 8, 2026"
 date: 2026-03-08
-category: benchmarks
+theater: benchmarks
+analyst: ICAI / Claude Sonnet 4.6
+assessment: "Stable — scaffold choice now dominates model choice"
 prompt_hash: 6f5df01d4f13565eb7a5479a8277956ca8c08782
 prompt_url: https://github.com/aidiss/institute-of-coding-agents
 ---

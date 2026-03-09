@@ -218,6 +218,63 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
+    .theater-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .theater-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .theater-card-header {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .theater-card-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+      margin-bottom: 0.75rem;
+    }
+    .theater-card-latest {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+      text-decoration: none;
+    }
+    .theater-card-latest:hover { color: var(--gold); }
+    .theater-card-date {
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .theater-card-assessment {
+      color: var(--text-muted);
+      font-size: 0.7rem;
+    }
+    .theater-card-empty {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--border);
+    }
+
     .theater-filters {
       display: flex;
       gap: 0.5rem;

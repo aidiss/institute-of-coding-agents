@@ -8,19 +8,43 @@ title: Home
 </div>
 
 <main class="wide">
-  <h2>Intelligence Reports</h2>
+  <h2>Theaters</h2>
+
+  <div class="theater-grid">
+    {% assign sorted = site.reports | sort: "date" | reverse %}
+
+    {% assign theaters = "releases,benchmarks,security,funding" | split: "," %}
+    {% assign descriptions = "What shipped? Models, products, and open source launches.,Who's winning? Scores, leaderboards, and methodology shifts.,What broke? Vulnerabilities, supply chain attacks, and exploits.,Where's the money? Deals, acquisitions, and talent moves." | split: "," %}
+
+    {% for t in theaters %}
+    {% assign latest = sorted | where: "theater", t | first %}
+    <div class="theater-card">
+      <div class="theater-card-header">{{ t | capitalize }}</div>
+      <div class="theater-card-desc">{{ descriptions[forloop.index0] }}</div>
+      {% if latest %}
+      <a href="{{ latest.url | relative_url }}" class="theater-card-latest">
+        <span class="theater-card-date">{{ latest.date | date: "%b %-d" }}</span>
+        <span class="theater-card-assessment">{{ latest.assessment }}</span>
+      </a>
+      {% else %}
+      <div class="theater-card-latest theater-card-empty">No reports yet</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <h2>All Reports</h2>
 
   <div class="theater-filters">
     <button class="filter-btn active" data-filter="all">All</button>
-    {% assign theaters = site.reports | map: "theater" | compact | uniq | sort %}
-    {% for t in theaters %}
+    {% assign report_theaters = site.reports | map: "theater" | compact | uniq | sort %}
+    {% for t in report_theaters %}
     <button class="filter-btn" data-filter="{{ t }}">{{ t | capitalize }}</button>
     {% endfor %}
   </div>
 
-  {% assign sorted = site.reports | sort: "date" | reverse %}
   {% for report in sorted %}
-  <div class="report-card" data-theater="{{ report.theater | default: 'daily' }}">
+  <div class="report-card" data-theater="{{ report.theater | default: 'legacy' }}">
     <a href="{{ report.url | relative_url }}">
       <div class="report-date">{{ report.date | date: "%B %-d, %Y" }}{% if report.theater %} <span class="report-theater">{{ report.theater }}</span>{% endif %}{% if report.assessment %} <span class="report-assessment">{{ report.assessment }}</span>{% endif %}</div>
       <div class="report-title">{{ report.title }}</div>

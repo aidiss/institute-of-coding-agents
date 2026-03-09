@@ -6,6 +6,10 @@ url: https://aidiss.github.io
 plugins:
   - jekyll-feed
 
+feed:
+  collections:
+    - reports
+
 collections:
   reports:
     output: true

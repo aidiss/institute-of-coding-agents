@@ -4,17 +4,32 @@ Search the web for the latest developments per the theater brief. Use subagents 
 
 Check `_reports/` for previous reports. Files are named `YYYY-MM-DD-theater.md`. Read the most recent one for this theater to avoid repeating old news.
 
-The report must start with Jekyll front matter:
+## Report format
+
+Every report MUST start with this exact Jekyll front matter structure. All fields are required:
 
 ```yaml
 ---
-title: "TITLE, <Month Day, Year>"
-date: YYYY-MM-DD
-theater: <theater name>
-analyst: ICAI / <model name and version>
-assessment: "Accelerating" or "Stable" or "Decelerating" — short qualifier
-prompt_hash: <provided in metadata>
-prompt_url: <provided in metadata>
+title: "<Theater Name>, <Month Day, Year>"
+date: <YYYY-MM-DD>
+theater: <theater name, lowercase>
+analyst: ICAI / <your model name and version>
+assessment: "<one of: Accelerating, Stable, Decelerating> — <short qualifier>"
+prompt_hash: <copy from metadata>
+prompt_url: <copy from metadata>
+---
+```
+
+Example:
+```yaml
+---
+title: "Benchmarks, March 9, 2026"
+date: 2026-03-09
+theater: benchmarks
+analyst: ICAI / Claude Sonnet 4.6
+assessment: "Stable — leaderboard compressed, no breakout"
+prompt_hash: abc123
+prompt_url: https://github.com/example
 ---
 ```
 

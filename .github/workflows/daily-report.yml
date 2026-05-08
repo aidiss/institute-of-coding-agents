@@ -1,8 +1,6 @@
 name: Daily report
 
 on:
-  schedule:
-    - cron: '3 4 * * *'  # 04:03 UTC = 07:03 Vilnius (EET/EEST)
   workflow_dispatch:
     inputs:
       theater:
@@ -20,7 +18,6 @@ jobs:
       matrix:
         theater: [releases, benchmarks, security, funding]
     if: >-
-      github.event_name == 'schedule' ||
       !github.event.inputs.theater ||
       github.event.inputs.theater == ''
     steps:
